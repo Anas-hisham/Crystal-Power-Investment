@@ -8,6 +8,8 @@ import Link from "next/link";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -52,6 +54,7 @@ const Login = () => {
   const [SginInGoogle, setSginInGoogle] = useState(true);
 
   useEffect(() => {
+        AOS.init();
     const picture = localStorage.getItem("picture");
     if (picture !== null && picture !== undefined && picture !== "") {
       setSginInGoogle(false);

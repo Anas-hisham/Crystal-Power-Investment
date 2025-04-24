@@ -1,23 +1,31 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useCart } from "../context/CartContext";
 import Image from "next/image";
 import { MdOutlineDelete } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import PaymentForm from "../_components/PaymentForm";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 const Page = () => {
   const { cart, removeFromCart } = useCart();
-  const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const subtotal = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
   const shipping = 0;
   const grandTotal = subtotal + shipping;
   const router = useRouter();
-
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
     <div className="my-12 px-4 md:px-10 max-w-4xl mx-auto">
       {cart.length === 0 ? (
         <div className="h-[calc(85vh)] flex flex-col items-center justify-center text-center">
-          <h1 className="text-2xl font-semibold mb-6 text-gray-700">Your cart is empty</h1>
+          <h1 className="text-2xl font-semibold mb-6 text-gray-700">
+            Your cart is empty
+          </h1>
           <button
             onClick={() => router.back()}
             className="px-6 py-2.5 bg-red-500 hover:bg-red-600 text-white text-sm font-medium rounded-md transition-all"
@@ -27,12 +35,22 @@ const Page = () => {
         </div>
       ) : (
         <>
-          <h2 className="text-xl font-semibold mb-6 text-gray-800">Shopping Cart</h2>
-          <div className="space-y-10">
+          <h2
+            data-aos="fade-up"
+            className="text-xl font-semibold mb-6 text-gray-800"
+          >
+            Shopping Cart
+          </h2>
+          <div
+            data-aos="fade-up"
+            data-aos-offset="0"
+            className="space-y-10 border-b"
+          >
             {cart.map((item, index) => (
               <div
+                data-aos="fade-up"
                 key={index}
-                className="flex flex-col sm:flex-row items-center gap-6 border-b pb-6"
+                className="flex flex-col sm:flex-row items-center gap-6 pb-6"
               >
                 <div className="relative w-36 h-36 flex-shrink-0">
                   <Image
@@ -44,9 +62,13 @@ const Page = () => {
                 </div>
                 <div className="flex-1 w-full flex flex-col sm:flex-row sm:justify-between">
                   <div>
-                    <h3 className="font-semibold text-gray-800">{item.title}</h3>
+                    <h3 className="font-semibold text-gray-800">
+                      {item.title}
+                    </h3>
                     <p className="text-sm text-gray-600 mt-1">${item.price}</p>
-                    <p className="text-sm text-gray-500 mt-1">Quantity: {item.quantity}</p>
+                    <p className="text-sm text-gray-500 mt-1">
+                      Quantity: {item.quantity}
+                    </p>
                     <div className="flex items-center gap-2 mt-3">
                       <span
                         className="w-6 h-6 rounded-full border"
@@ -72,19 +94,37 @@ const Page = () => {
 
           {/* Checkout section below cart */}
           <div className="mt-12 bg-white p-6 rounded-2xl shadow-lg">
-            <h2 className="text-xl font-semibold text-gray-800 mb-6">Order Summary</h2>
+            <h2
+              data-aos="fade-up"
+              data-aos-offset="000"
+              className="text-xl font-semibold text-gray-800 mb-6"
+            >
+              Order Summary
+            </h2>
 
             <div className="space-y-3 text-sm text-gray-600">
-              <div className="flex justify-between">
+              <div
+                data-aos="fade-up"
+                data-aos-offset="000"
+                className="flex justify-between"
+              >
                 <span>Subtotal:</span>
                 <span>${subtotal.toFixed(2)}</span>
               </div>
-              <div className="flex justify-between">
+              <div
+                data-aos="fade-up"
+                data-aos-offset="000"
+                className="flex justify-between"
+              >
                 <span>Shipping:</span>
                 <span>${shipping.toFixed(2)}</span>
               </div>
               <div className="border-t border-gray-200 my-3" />
-              <div className="flex justify-between font-semibold text-base text-gray-800">
+              <div
+                data-aos="fade-up"
+                data-aos-offset="000"
+                className="flex justify-between font-semibold text-base text-gray-800"
+              >
                 <span>Total:</span>
                 <span>${grandTotal.toFixed(2)}</span>
               </div>

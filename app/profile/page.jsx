@@ -3,12 +3,16 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
 export default function ProfilePage() {
   const [userData, setUserData] = useState(null);
   const [userRole, setUserRole] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    AOS.init();
+
     // Check for user data in localStorage
     const storedData = localStorage.getItem("data");
     const storedRole = localStorage.getItem("user");
@@ -78,7 +82,11 @@ export default function ProfilePage() {
         <div className="bg-white rounded-lg shadow-sm p-6">
           {/* Profile Header */}
           <div className="flex flex-col md:flex-row items-start md:items-center gap-6 mb-8">
-            <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-gray-200">
+            <div
+              data-aos="zoom-in"
+              data-aos-duration="300"
+              className="w-24 h-24 rounded-full overflow-hidden border-2 border-gray-200"
+            >
               <img
                 src={userData?.picture}
                 alt="Profile"
@@ -87,7 +95,7 @@ export default function ProfilePage() {
               />
             </div>
 
-            <div className="flex-1">
+            <div data-aos="zoom-in" data-aos-duration="300" className="flex-1">
               <h2 className="text-2xl font-bold text-gray-800">
                 {userData?.name}
               </h2>
@@ -100,6 +108,8 @@ export default function ProfilePage() {
             </div>
 
             <button
+              data-aos="zoom-in"
+              data-aos-duration="300"
               className="px-4 py-2 bg-red-400 text-white rounded hover:bg-red-500 transition-colors duration-300"
               onClick={() => {
                 // Add your edit functionality here
@@ -112,23 +122,31 @@ export default function ProfilePage() {
 
           {/* Personal Information */}
           <div className="mb-8">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">
+            <h3
+              data-aos="zoom-in"
+              data-aos-duration="300"
+              className="text-lg font-semibold text-gray-800 mb-4"
+            >
               Personal Information
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
+              <div data-aos="zoom-in" data-aos-duration="300">
                 <label className="block text-sm text-gray-500 mb-1">
                   First Name
                 </label>
                 <p className="text-gray-800">{userData?.given_name}</p>
               </div>
-              <div>
+              <div data-aos="zoom-in" data-aos-duration="300">
                 <label className="block text-sm text-gray-500 mb-1">
                   Last Name
                 </label>
                 <p className="text-gray-800">{userData?.family_name}</p>
               </div>
-              <div className="md:col-span-2">
+              <div
+                data-aos="zoom-in"
+                data-aos-duration="300"
+                className="md:col-span-2"
+              >
                 <label className="block text-sm text-gray-500 mb-1">
                   Email
                 </label>
@@ -139,11 +157,15 @@ export default function ProfilePage() {
 
           {/* Style Preferences */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">
+            <h3
+              data-aos="zoom-in"
+              data-aos-duration="300"
+              className="text-lg font-semibold text-gray-800 mb-4"
+            >
               Your Style Preferences
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
+              <div data-aos="zoom-in" data-aos-duration="300">
                 <label className="block text-sm text-gray-500 mb-1">
                   Favorite Categories
                 </label>
@@ -159,7 +181,7 @@ export default function ProfilePage() {
                   </span>
                 </div>
               </div>
-              <div>
+              <div data-aos="zoom-in" data-aos-duration="300">
                 <label className="block text-sm text-gray-500 mb-1">
                   Preferred Colors
                 </label>
@@ -169,13 +191,13 @@ export default function ProfilePage() {
                   <div className="w-6 h-6 rounded-full bg-gray-500"></div>
                 </div>
               </div>
-              <div>
+              <div data-aos="zoom-in" data-aos-duration="300">
                 <label className="block text-sm text-gray-500 mb-1">
                   Size Preference
                 </label>
                 <p className="text-gray-800">Medium (M)</p>
               </div>
-              <div>
+              <div data-aos="zoom-in" data-aos-duration="300">
                 <label className="block text-sm text-gray-500 mb-1">
                   Newsletter
                 </label>
@@ -186,11 +208,19 @@ export default function ProfilePage() {
 
           {/* Recent Activity */}
           <div className="mt-8">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">
+            <h3
+              data-aos="zoom-in"
+              data-aos-duration="300"
+              className="text-lg font-semibold text-gray-800 mb-4"
+            >
               Recent Activity
             </h3>
             <div className="space-y-4">
-              <div className="flex items-center p-3 bg-gray-50 rounded-lg">
+              <div
+                data-aos="zoom-in"
+                data-aos-duration="300"
+                className="flex items-center p-3 bg-gray-50 rounded-lg"
+              >
                 <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center mr-3">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -212,7 +242,11 @@ export default function ProfilePage() {
                   <p className="text-sm text-gray-500">2 days ago</p>
                 </div>
               </div>
-              <div className="flex items-center p-3 bg-gray-50 rounded-lg">
+              <div
+                data-aos="zoom-in"
+                data-aos-duration="300"
+                className="flex items-center p-3 bg-gray-50 rounded-lg"
+              >
                 <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center mr-3">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

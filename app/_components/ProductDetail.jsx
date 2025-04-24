@@ -6,6 +6,8 @@ import { useCart } from "@/app/context/CartContext";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
 async function fetchProduct(id) {
   const res = await fetch(`https://fakestoreapi.com/products/${id}`);
   return res.json();
@@ -37,6 +39,10 @@ export default function ProductDetailPage({ params }) {
     { name: "Green", value: "#166534" },
     { name: "Gray", value: "#6B7280" },
   ];
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   useEffect(() => {
     const storeduser = localStorage.getItem("user");
@@ -73,14 +79,18 @@ export default function ProductDetailPage({ params }) {
   };
 
   if (loading)
-    return <div className="text-center p-10 min-h-screen">Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-screen font-bold text-lg">
+        Loading...
+      </div>
+    );
   if (error)
     return <div className="text-center p-10 text-red-500">Error: {error}</div>;
   if (!product)
     return <div className="text-center p-10">Product not found</div>;
 
   return (
-    <div className="bg-white max-w-7xl mx-auto px-4 py-8">
+    <div className="bg-white max-w-7xl mx-auto px-4 py-8 overflow-hidden">
       {/* Breadcrumb Navigation */}
       <div className="mb-6">
         <nav aria-label="Breadcrumb">
@@ -149,9 +159,12 @@ export default function ProductDetailPage({ params }) {
       </div>
 
       {/* Product Content */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-20">
+      <div
+        className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-20"
+        data-aos="fade-left"
+      >
         {/* Product Image */}
-        <div className="bg-white p-4 rounded-lg ">
+        <div className="bg-white p-4 rounded-lg " data-aos="zoom-in">
           <img
             src={product.image}
             alt={product.title}
@@ -160,7 +173,7 @@ export default function ProductDetailPage({ params }) {
         </div>
 
         {/* Product Details */}
-        <div>
+        <div data-aos="fade-left">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
             {product.title}
           </h1>
@@ -178,7 +191,7 @@ export default function ProductDetailPage({ params }) {
           </div>
 
           {/* Size Selection */}
-          <div className="mb-6">
+          <div className="mb-6" data-aos="fade-left">
             <h3 className="text-sm font-medium text-gray-900 mb-3">Size</h3>
             <div className="flex flex-wrap gap-2">
               {sizes.map((size) => (
@@ -197,7 +210,7 @@ export default function ProductDetailPage({ params }) {
           </div>
 
           {/* Color Selection */}
-          <div className="mb-6">
+          <div className="mb-6" data-aos="fade-left">
             <h3 className="text-sm font-medium text-gray-900 mb-3">Color</h3>
             <div className="flex items-center gap-2">
               {colors.map((color) => (
@@ -222,7 +235,7 @@ export default function ProductDetailPage({ params }) {
           </div>
 
           {/* Add to Cart Button */}
-          <div className="w-full ">
+          <div className="w-full " data-aos="fade-left" data-aos-offset="50">
             <button
               onClick={() => handleAddToCart(product)}
               className="w-[63%] sm:w-[55%] bg-red-400 text-white py-3 px-4 rounded-md font-medium hover:bg-red-500 transition-colors mb-8"

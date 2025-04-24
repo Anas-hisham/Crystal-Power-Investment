@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, ShoppingBag, X } from "lucide-react";
 import Image from "next/image";
 import { FaShoppingCart } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
@@ -52,20 +52,8 @@ export default function Navbar() {
             href="/"
             className="flex items-center text-xl font-bold text-gray-900"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-8 w-8 text-red-400"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-              />
-            </svg>
+            <ShoppingBag className="text-red-400 h-8 w-8" />
+
             <span className="ml-2">Fashionista</span>
           </Link>
 
@@ -146,7 +134,7 @@ export default function Navbar() {
         <div className="absolute top-16 left-0 w-full bg-white shadow-md px-6 py-6 z-40 rounded-b-xl">
           <div className="space-y-4">
             <Link
-              href="/shop"
+              href="/products"
               onClick={toggleMenu}
               className="block text-gray-800 hover:text-red-400"
             >

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
@@ -7,6 +7,9 @@ import Link from "next/link";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 const Register = () => {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -17,6 +20,10 @@ const Register = () => {
   const [error, setError] = useState("");
   //   const navigate = useNavigate();
   const router = useRouter();
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   const handleChange = (e) => {
     setFormData({

@@ -80,7 +80,7 @@ const PaymentForm = ({ amount }) => {
     };
 
     return (
-        <div className=" p-10 rounded-xl  bg-white mt-8 w-full">
+        <div   data-aos="fade-up" className=" p-10 rounded-xl  bg-white mt-8 w-full">
             <h2 className="text-xl font-semibold mb-4">Pay with Card</h2>
             <form onSubmit={handleSubmit}>
                 <div ref={cardElementRef} className="border p-3 rounded mb-4" />

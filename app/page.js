@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
@@ -23,7 +22,6 @@ export default function Home() {
       {/* Decorative glowing circles */}
       <div className="absolute -top-10 -left-10 w-60 h-60 bg-red-300 opacity-20 rounded-full filter blur-3xl animate-pulse"></div>
       <div className="absolute bottom-0 right-0 w-72 h-72 bg-purple-300 opacity-20 rounded-full filter blur-3xl animate-pulse"></div>
-    
     </div>
 
   );

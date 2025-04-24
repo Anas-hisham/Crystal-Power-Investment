@@ -4,6 +4,9 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 export default function ProductList({ initialProducts }) {
   const [products, setProducts] = useState([]);
   const [filters, setFilters] = useState({
@@ -14,6 +17,10 @@ export default function ProductList({ initialProducts }) {
   });
 
   const categories = ["Men's Clothing", "Women's Clothing"];
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   // Initialize products with 'liked' property
   useEffect(() => {
@@ -51,13 +58,21 @@ export default function ProductList({ initialProducts }) {
     });
 
   return (
-    <div className="p-6 max-w-6xl mx-auto bg-white">
+    <div
+      data-aos="zoom-in"
+      data-aos-duration="500"
+      className="p-6 max-w-6xl mx-auto bg-white"
+    >
       <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
         Our Products
       </h1>
 
       {/* Filters */}
-      <div className="p-4 rounded-xl flex flex-col gap-4 mb-8 justify-center items-center">
+      <div
+        data-aos="zoom-in"
+        data-aos-duration="500"
+        className="p-4 rounded-xl flex flex-col gap-4 mb-8 justify-center items-center"
+      >
         {/* Search Input */}
         <div className="flex">
           <div className="flex items-center bg-white rounded-full px-4 py-2 shadow-sm">
@@ -87,7 +102,11 @@ export default function ProductList({ initialProducts }) {
         </div>
 
         {/* Category Buttons */}
-        <div className="flex flex-wrap gap-4 justify-center w-full flex-col sm:flex-row">
+        <div
+          data-aos="zoom-in"
+          data-aos-duration="500"
+          className="flex flex-wrap gap-4 justify-center w-full flex-col sm:flex-row"
+        >
           {categories.map((category) => (
             <button
               key={category}
@@ -109,7 +128,11 @@ export default function ProductList({ initialProducts }) {
         </div>
 
         {/* Sort Checkboxes */}
-        <div className="flex space-x-6">
+        <div
+          className="flex space-x-6"
+          data-aos="zoom-in"
+          data-aos-duration="500"
+        >
           <label className="flex items-center space-x-2">
             <input
               type="checkbox"
@@ -153,6 +176,8 @@ export default function ProductList({ initialProducts }) {
             <div
               key={p.id}
               className="relative bg-white rounded-2xl p-4 transition-shadow shadow hover:shadow-xl duration-300 flex flex-col items-center sm:items-start"
+              data-aos="fade-up"
+              data-aos-offset="100"
             >
               {/* Like button */}
               <button
@@ -172,7 +197,7 @@ export default function ProductList({ initialProducts }) {
                   <img
                     src={p.image}
                     alt={p.title}
-                    className="h-60 w-full object-cover rounded-xl mb-4 transition-transform hover:scale-105"
+                    className="h-90  sm:h-60 w-full object-cover rounded-xl mb-4 transition-transform hover:scale-105"
                   />
                 </Link>
               </div>
