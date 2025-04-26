@@ -200,7 +200,7 @@ export default function ProductList({ initialProducts }) {
       {/* Products Grid */}
       <div
         data-aos="fade-left"
-        className="w-full lg:w-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+        className="w-full lg:w-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 h-fit"
       >
         {filtered.length > 0 ? (
           filtered.map(
