@@ -62,7 +62,7 @@ export default function ProductList({ initialProducts }) {
     });
 
   return (
-    <div className="flex flex-col lg:flex-row max-w-7xl mx-auto p-6 gap-10 ">
+    <div className="flex flex-col lg:flex-row max-w-7xl mx-auto p-6 gap-10 overflow-hidden">
       {/* Sidebar Filters */}
       <div
         data-aos="fade-right"
